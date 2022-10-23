@@ -1,5 +1,6 @@
 package io.sewah.customer.services;
 
+import io.sewah.clients.fraud.FraudClient;
 import io.sewah.customer.dto.CustomerRequest;
 import io.sewah.customer.dto.FraudCheckResponse;
 import io.sewah.customer.entities.Customer;
@@ -12,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 @Slf4j
-public record CustomerServiceImpl(CustomerRepository customerRepository, RestTemplate restTemplate) implements CustomerService {
+public record CustomerServiceImpl(CustomerRepository customerRepository, FraudClient fraudClient) implements CustomerService {
     @Override
     public String registerNewCustomer(CustomerRequest customerRequest) {
         customerRepository().findByEmail(customerRequest.email()).ifPresentOrElse(
@@ -26,11 +27,8 @@ public record CustomerServiceImpl(CustomerRepository customerRepository, RestTem
                             .lastName(customerRequest.lastName())
                             .build());
                     //TODO: check if customer is fraudster
-                   var response =  restTemplate.getForObject(
-                        "http://localhost:8181/api/v1/frauds/check-fraud?customerId={customerId}",
-                            FraudCheckResponse.class,
-                            customer.getId()
-                    );
+
+                    var response = fraudClient.isFraudSter(customer.getId());
 
                    if(response.isFraudster()) throw new FraudsterException("This customer is a Fraudster");
 

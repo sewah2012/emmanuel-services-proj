@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="fraud-service" />
         <module name="eureka-service" />
+        <module name="ApiClients-Service" />
         <module name="customer-service" />
       </profile>
     </annotationProcessing>

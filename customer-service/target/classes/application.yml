@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: ${PORT:0}
   servlet:
     context-path: /api/v1
 
@@ -12,7 +12,7 @@ spring:
     database: POSTGRESQL
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
   datasource:
     url: jdbc:postgresql://localhost:5432/customerDB
     username: sewah
@@ -34,3 +34,9 @@ spring:
 #        ddl-auto: create-drop
 #      show-sql: 'true'
 
+eureka:
+  client:
+    service-url:
+      defaultZone: ${DISCOVERY_SERVER_URL:http://localhost:8761/eureka}
+    fetch-registry: true
+    register-with-eureka: true
