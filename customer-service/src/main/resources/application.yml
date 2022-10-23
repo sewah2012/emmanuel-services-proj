@@ -7,16 +7,30 @@ server:
 spring:
   application:
     name: customer-service
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
   datasource:
-    username: 'sewah'
-    url: jdbc:postgresql://localhost:5432/customer
-    password: 'password'
-    jpa:
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.PostgreSQLDialect
-          format_sql: 'true'
-      hibernate:
-        ddl-auto: update
-      show-sql: 'true'
+    url: jdbc:postgresql://localhost:5432/customerDB
+    username: sewah
+    password: password
+    driverClassName: org.postgresql.Driver
+    sql:
+      init:
+        platform: postgres
+#  datasource:
+#    username: 'sewah'
+#    url: jdbc:postgresql://localhost:5432/customerDB
+#    password: 'password'
+#    jpa:
+#      properties:
+#        hibernate:
+#          dialect: org.hibernate.dialect.PostgreSQLDialect
+#          format_sql: 'true'
+#      hibernate:
+#        ddl-auto: create-drop
+#      show-sql: 'true'
 

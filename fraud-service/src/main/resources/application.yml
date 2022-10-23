@@ -1,0 +1,24 @@
+server:
+  port: 8181
+  servlet:
+    context-path: /api/v1
+
+
+spring:
+  application:
+    name: fraud-service
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:postgresql://localhost:5432/customerDB
+    username: sewah
+    password: password
+    driverClassName: org.postgresql.Driver
+    sql:
+      init:
+        platform: postgres
+
