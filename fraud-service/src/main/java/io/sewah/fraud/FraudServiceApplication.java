@@ -1,11 +1,11 @@
-package io.sewah.customer;
+package io.sewah.fraud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CustomerServiceApplication{
+public class FraudServiceApplication{
     public static void main(String[] args) {
-        SpringApplication.run(CustomerServiceApplication.class, args);
+        SpringApplication.run(FraudServiceApplication.class, args);
     }
 }

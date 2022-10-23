@@ -1,21 +1,18 @@
 package io.sewah.fraud.controllers;
-import io.sewah.fraud.dto.FraudRequest;
+import io.sewah.fraud.dto.FraudCheckResponse;
 import io.sewah.fraud.services.FraudService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/frauds")
 @Slf4j
 public record FraudController(FraudService fraudService) {
 
-    @PostMapping("/register-fraud")
-    public ResponseEntity<String> registerCustomer(@RequestBody FraudRequest fraudRequest){
-        log.info("new customer registration: {}", fraudRequest);
-        return ResponseEntity.ok(fraudService.registerNewFraud(fraudRequest));
+    @GetMapping("/check-fraud")
+    public ResponseEntity<FraudCheckResponse> checkFraud(@RequestParam("customerId") Integer customerId){
+        log.info("fraud check request for customer {}", customerId);
+        return ResponseEntity.ok(fraudService.isFradulent(customerId));
     }
 }

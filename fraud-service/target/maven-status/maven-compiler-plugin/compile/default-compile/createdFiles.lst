@@ -1,0 +1,12 @@
+io\sewah\fraud\controllers\FraudController.class
+io\sewah\customer\exceptions\errors\AlreadyExistException.class
+io\sewah\fraud\dto\FraudRequest.class
+io\sewah\fraud\FraudServiceApplication.class
+io\sewah\fraud\repositories\FraudRepository.class
+io\sewah\customer\exceptions\ExceptionHandler.class
+io\sewah\fraud\services\FraudServiceImpl.class
+io\sewah\customer\exceptions\ErrorMessage$ErrorMessageBuilder.class
+io\sewah\customer\exceptions\ErrorMessage.class
+io\sewah\fraud\entities\FraudCheckHistory.class
+io\sewah\fraud\services\FraudService.class
+io\sewah\fraud\entities\FraudCheckHistory$FraudCheckHistoryBuilder.class

@@ -3,14 +3,15 @@ package io.sewah.fraud.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "frauds")
-public class Fraud {
+@Table(name = "fraud_check_histories")
+public class FraudCheckHistory {
     @Id
     @SequenceGenerator(
             name="fraud_id_sequence",
@@ -18,8 +19,8 @@ public class Fraud {
     )
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fraud_id_sequence")
     private Integer id;
-    private String firstName;
-    private String lastName;
-    private String email;
+    private Integer customerId;
+    private Boolean isFraudster;
+    private LocalDateTime createdAt;
 
 }

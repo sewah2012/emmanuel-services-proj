@@ -1,8 +1,9 @@
 package io.sewah.fraud.services;
-import io.sewah.fraud.dto.FraudRequest;
+
+import io.sewah.fraud.dto.FraudCheckResponse;
 
 public interface FraudService {
 
-    public String registerNewFraud(FraudRequest fraudRequest);
+    public FraudCheckResponse isFradulent(Integer customerId);
 
 }
