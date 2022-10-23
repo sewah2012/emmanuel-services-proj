@@ -1,6 +1,6 @@
 package io.sewah.fraud.services;
 
-import io.sewah.fraud.dto.FraudCheckResponse;
+import io.sewah.clients.fraud.dto.FraudCheckResponse;
 
 public interface FraudService {
 

@@ -1,6 +1,6 @@
 package io.sewah.fraud.services;
 
-import io.sewah.fraud.dto.FraudCheckResponse;
+import io.sewah.clients.fraud.dto.FraudCheckResponse;
 import io.sewah.fraud.entities.FraudCheckHistory;
 import io.sewah.fraud.repositories.FraudRepository;
 import lombok.extern.slf4j.Slf4j;

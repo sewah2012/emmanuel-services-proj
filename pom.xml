@@ -13,6 +13,7 @@
         <module>fraud-service</module>
         <module>eureka-service</module>
         <module>ApiClients-Service</module>
+        <module>Notification-Service</module>
     </modules>
 
     <properties>

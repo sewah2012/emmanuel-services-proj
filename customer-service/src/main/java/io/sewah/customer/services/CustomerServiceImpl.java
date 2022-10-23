@@ -1,19 +1,19 @@
 package io.sewah.customer.services;
 
 import io.sewah.clients.fraud.FraudClient;
+import io.sewah.clients.notifications.NotificationClient;
+import io.sewah.clients.notifications.dto.NotificationRequest;
 import io.sewah.customer.dto.CustomerRequest;
-import io.sewah.customer.dto.FraudCheckResponse;
 import io.sewah.customer.entities.Customer;
 import io.sewah.customer.exceptions.errors.AlreadyExistException;
 import io.sewah.customer.exceptions.errors.FraudsterException;
 import io.sewah.customer.repositories.CustomerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 @Slf4j
-public record CustomerServiceImpl(CustomerRepository customerRepository, FraudClient fraudClient) implements CustomerService {
+public record CustomerServiceImpl(CustomerRepository customerRepository, FraudClient fraudClient, NotificationClient notificationClient) implements CustomerService {
     @Override
     public String registerNewCustomer(CustomerRequest customerRequest) {
         customerRepository().findByEmail(customerRequest.email()).ifPresentOrElse(
@@ -30,7 +30,22 @@ public record CustomerServiceImpl(CustomerRepository customerRepository, FraudCl
 
                     var response = fraudClient.isFraudSter(customer.getId());
 
-                   if(response.isFraudster()) throw new FraudsterException("This customer is a Fraudster");
+                   if(response.isFraudster()){
+                       notificationClient.sendNotification(new NotificationRequest(
+                               String.format("New Fraud Detected on customer %s %s", customer.getFirstName(), customer.getLastName()),
+                               customer.getId(),
+                               customer.getEmail()
+
+                       ));
+                       throw new FraudsterException("This customer is a Fraudster");
+                   }
+
+                   //TODO: Make it Async (i.e. Add it to a queue)
+                    notificationClient.sendNotification(new NotificationRequest(
+                            String.format("Hey %s %s, Welcome to Emmanuel Smart Systems", customer.getFirstName(), customer.getLastName()),
+                            customer.getId(),
+                            customer.getEmail()
+                    ));
 
                 }
         );
