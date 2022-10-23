@@ -21,6 +21,9 @@ spring:
     sql:
       init:
         platform: postgres
+  zipkin:
+    base-url: ${ZIPKIN_BASE_URL:http://localhost:9411}
+
 
 eureka:
   client:
