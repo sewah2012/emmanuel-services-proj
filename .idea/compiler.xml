@@ -12,6 +12,7 @@
         <module name="Notification-Service" />
         <module name="ApiClients-Service" />
         <module name="customer-service" />
+        <module name="gateway-service" />
       </profile>
     </annotationProcessing>
   </component>
