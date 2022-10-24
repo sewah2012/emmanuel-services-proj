@@ -9,10 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="fraud-service" />
         <module name="eureka-service" />
-        <module name="Notification-Service" />
-        <module name="ApiClients-Service" />
         <module name="customer-service" />
         <module name="gateway-service" />
+        <module name="amqp" />
+        <module name="Notification-Service" />
+        <module name="ApiClients-Service" />
       </profile>
     </annotationProcessing>
   </component>

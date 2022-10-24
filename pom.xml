@@ -15,6 +15,7 @@
         <module>ApiClients-Service</module>
         <module>Notification-Service</module>
         <module>gateway-service</module>
+        <module>amqp</module>
     </modules>
 
     <properties>
