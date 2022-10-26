@@ -1,0 +1,33 @@
+server:
+  port: ${PORT:0}
+  servlet:
+    context-path: /api/v1
+
+
+spring:
+  application:
+    name: fraud-service
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fraudDB
+    username: sewah
+    password: password
+    driverClassName: org.postgresql.Driver
+    sql:
+      init:
+        platform: postgres
+  zipkin:
+    base-url: ${ZIPKIN_BASE_URL:http://zipkin:9411}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${DISCOVERY_SERVER_URL:http://eureka_server:8761/eureka}
+    fetch-registry: true
+    register-with-eureka: true
+
