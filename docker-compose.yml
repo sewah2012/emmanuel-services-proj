@@ -37,6 +37,7 @@ services:
       - "9411:9411"
     networks:
       - postgres
+      - spring
     restart: unless-stopped
 
   rabbitmq:
@@ -49,8 +50,47 @@ services:
       - postgres
     restart: unless-stopped
 
+  eureka-server:
+    image: sewah2012/eureka-service
+    container_name: eureka_server
+    ports:
+      - "8761:8761"
+    depends_on:
+      - zipkin
+    networks:
+      - spring
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  gateway-service:
+    image: sewah2012/gateway-service
+    container_name: gateway-service
+    ports:
+      - "8585:8585"
+    depends_on:
+      - zipkin
+      - eureka-server
+    networks:
+      - spring
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+#  customer-service:
+#    image: sewah2012/customer-service
+#    container_name: customer-service
+#    ports:
+#      - "8585:8585"
+#    depends_on:
+#      - zipkin
+#      - eureka-server
+#    networks:
+#      - spring
+
+
 networks:
   postgres:
+    driver: bridge
+  spring:
     driver: bridge
 
 volumes:
