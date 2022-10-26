@@ -1,0 +1,12 @@
+C:\Users\pc\Desktop\microservice-demo\emmanuel-services\customer-service\src\main\java\io\sewah\customer\exceptions\ErrorMessage.java
+C:\Users\pc\Desktop\microservice-demo\emmanuel-services\customer-service\src\main\java\io\sewah\customer\repositories\CustomerRepository.java
+C:\Users\pc\Desktop\microservice-demo\emmanuel-services\customer-service\src\main\java\io\sewah\customer\dto\CustomerRequest.java
+C:\Users\pc\Desktop\microservice-demo\emmanuel-services\customer-service\src\main\java\io\sewah\customer\controllers\CustomerController.java
+C:\Users\pc\Desktop\microservice-demo\emmanuel-services\customer-service\src\main\java\io\sewah\customer\entities\Customer.java
+C:\Users\pc\Desktop\microservice-demo\emmanuel-services\customer-service\src\main\java\io\sewah\customer\exceptions\errors\AlreadyExistException.java
+C:\Users\pc\Desktop\microservice-demo\emmanuel-services\customer-service\src\main\java\io\sewah\customer\exceptions\errors\FraudsterException.java
+C:\Users\pc\Desktop\microservice-demo\emmanuel-services\customer-service\src\main\java\io\sewah\customer\Clients\CustomerClientConfig.java
+C:\Users\pc\Desktop\microservice-demo\emmanuel-services\customer-service\src\main\java\io\sewah\customer\services\CustomerService.java
+C:\Users\pc\Desktop\microservice-demo\emmanuel-services\customer-service\src\main\java\io\sewah\customer\CustomerServiceApplication.java
+C:\Users\pc\Desktop\microservice-demo\emmanuel-services\customer-service\src\main\java\io\sewah\customer\services\CustomerServiceImpl.java
+C:\Users\pc\Desktop\microservice-demo\emmanuel-services\customer-service\src\main\java\io\sewah\customer\exceptions\ExceptionHandler.java

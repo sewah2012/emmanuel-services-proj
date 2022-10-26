@@ -1,0 +1,4 @@
+io\sewah\clients\fraud\dto\FraudCheckResponse.class
+io\sewah\clients\notifications\dto\NotificationRequest.class
+io\sewah\clients\fraud\FraudClient.class
+io\sewah\clients\notifications\NotificationClient.class

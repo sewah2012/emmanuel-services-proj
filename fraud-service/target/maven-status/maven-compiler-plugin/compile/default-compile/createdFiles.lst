@@ -1,6 +1,5 @@
 io\sewah\fraud\controllers\FraudController.class
 io\sewah\customer\exceptions\errors\AlreadyExistException.class
-io\sewah\fraud\dto\FraudRequest.class
 io\sewah\fraud\FraudServiceApplication.class
 io\sewah\fraud\repositories\FraudRepository.class
 io\sewah\customer\exceptions\ExceptionHandler.class

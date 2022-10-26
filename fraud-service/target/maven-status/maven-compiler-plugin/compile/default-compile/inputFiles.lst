@@ -1,7 +1,6 @@
 C:\Users\pc\Desktop\microservice-demo\emmanuel-services\fraud-service\src\main\java\io\sewah\fraud\controllers\FraudController.java
 C:\Users\pc\Desktop\microservice-demo\emmanuel-services\fraud-service\src\main\java\io\sewah\fraud\exceptions\ExceptionHandler.java
 C:\Users\pc\Desktop\microservice-demo\emmanuel-services\fraud-service\src\main\java\io\sewah\fraud\services\FraudServiceImpl.java
-C:\Users\pc\Desktop\microservice-demo\emmanuel-services\fraud-service\src\main\java\io\sewah\fraud\dto\FraudRequest.java
 C:\Users\pc\Desktop\microservice-demo\emmanuel-services\fraud-service\src\main\java\io\sewah\fraud\entities\FraudCheckHistory.java
 C:\Users\pc\Desktop\microservice-demo\emmanuel-services\fraud-service\src\main\java\io\sewah\fraud\exceptions\errors\AlreadyExistException.java
 C:\Users\pc\Desktop\microservice-demo\emmanuel-services\fraud-service\src\main\java\io\sewah\fraud\repositories\FraudRepository.java
