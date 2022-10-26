@@ -1,5 +1,6 @@
 package io.sewah.customer.services;
 
+import io.sewah.amqp.config.RabbitMQMessageProducer;
 import io.sewah.clients.fraud.FraudClient;
 import io.sewah.clients.notifications.NotificationClient;
 import io.sewah.clients.notifications.dto.NotificationRequest;
@@ -13,7 +14,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public record CustomerServiceImpl(CustomerRepository customerRepository, FraudClient fraudClient, NotificationClient notificationClient) implements CustomerService {
+public record CustomerServiceImpl(
+        CustomerRepository customerRepository,
+        FraudClient fraudClient,
+        NotificationClient notificationClient,
+        RabbitMQMessageProducer rabbitMQMessageProducer
+) implements CustomerService {
     @Override
     public String registerNewCustomer(CustomerRequest customerRequest) {
         customerRepository().findByEmail(customerRequest.email()).ifPresentOrElse(
@@ -31,21 +37,30 @@ public record CustomerServiceImpl(CustomerRepository customerRepository, FraudCl
                     var response = fraudClient.isFraudSter(customer.getId());
 
                    if(response.isFraudster()){
-                       notificationClient.sendNotification(new NotificationRequest(
-                               String.format("New Fraud Detected on customer %s %s", customer.getFirstName(), customer.getLastName()),
-                               customer.getId(),
-                               customer.getEmail()
-
-                       ));
+//                       notificationClient.sendNotification(new NotificationRequest(
+//                               String.format("New Fraud Detected on customer %s %s", customer.getFirstName(), customer.getLastName()),
+//                               customer.getId(),
+//                               customer.getEmail()
+//
+//                       ));
                        throw new FraudsterException("This customer is a Fraudster");
                    }
 
                    //TODO: Make it Async (i.e. Add it to a queue)
-                    notificationClient.sendNotification(new NotificationRequest(
+//                    notificationClient.sendNotification(new NotificationRequest(
+//                            String.format("Hey %s %s, Welcome to Emmanuel Smart Systems", customer.getFirstName(), customer.getLastName()),
+//                            customer.getId(),
+//                            customer.getEmail()
+//                    ));
+                    rabbitMQMessageProducer.publish(
+                            new NotificationRequest(
                             String.format("Hey %s %s, Welcome to Emmanuel Smart Systems", customer.getFirstName(), customer.getLastName()),
                             customer.getId(),
-                            customer.getEmail()
-                    ));
+                            customer.getEmail()),
+                            "internal.exchange",
+                            "internal.notification.routing-key"
+
+                    );
 
                 }
         );
