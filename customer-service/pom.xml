@@ -57,7 +57,7 @@
             <groupId>io.sewah</groupId>
             <artifactId>ApiClients-Service</artifactId>
             <scope>compile</scope>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

@@ -12,7 +12,20 @@
     <artifactId>eureka-service</artifactId>
 
     <packaging>jar</packaging>
-
+    <!--    this profile will only be invoked when building images-->
+    <profiles>
+        <profile>
+            <id>build-docker-image</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     <build>
         <plugins>
             <plugin>

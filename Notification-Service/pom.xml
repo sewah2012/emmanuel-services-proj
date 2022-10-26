@@ -9,9 +9,22 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Notification-Service</artifactId>
+    <artifactId>notification-service</artifactId>
     <packaging>jar</packaging>
-
+    <!--    this profile will only be invoked when building images-->
+    <profiles>
+        <profile>
+            <id>build-docker-image</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     <build>
         <plugins>
             <plugin>
@@ -42,7 +55,7 @@
             <groupId>io.sewah</groupId>
             <artifactId>ApiClients-Service</artifactId>
             <scope>compile</scope>
-            <version>${parent.version}</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
