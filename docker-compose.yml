@@ -6,9 +6,10 @@ services:
     environment:
       POSTGRES_USER: sewah
       POSTGRES_PASSWORD: password
+#      POSTGRES_MULTIPLE_DATABASES: customerDB,fraudDB
       PGDATA: /data/postgres
     volumes:
-      - postgres:/dta/postgres
+      - postgres:/data/postgres
     ports:
       - "5432:5432"
     networks:
@@ -63,7 +64,7 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
 
   gateway-service:
-    image: sewah2012/gateway-service
+    image: sewah2012/gateway-service:latest
     container_name: gateway-service
     ports:
       - "8585:8585"
@@ -75,16 +76,53 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
 
-#  customer-service:
-#    image: sewah2012/customer-service
-#    container_name: customer-service
-#    ports:
-#      - "8585:8585"
-#    depends_on:
-#      - zipkin
-#      - eureka-server
-#    networks:
-#      - spring
+  customer-service:
+    image: sewah2012/customer-service:latest
+    container_name: customer-service
+    ports:
+      - "8181:8181"
+    depends_on:
+      - zipkin
+      - eureka-server
+      - postgres
+      - rabbitmq
+    networks:
+      - spring
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  fraud-service:
+    image: sewah2012/fraud-service:latest
+    container_name: fraud-service
+    ports:
+      - "8182:8182"
+    depends_on:
+      - zipkin
+      - eureka-server
+      - postgres
+    networks:
+      - spring
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+  notification-service:
+    image: sewah2012/notification-service:latest
+    container_name: notification-service
+    ports:
+      - "8183:8183"
+    depends_on:
+      - zipkin
+      - eureka-server
+      - postgres
+      - rabbitmq
+    networks:
+      - spring
+      - postgres
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
 
 
 networks:

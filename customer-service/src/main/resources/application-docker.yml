@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:0}
+  port: 8181
   servlet:
     context-path: /api/v1
 
@@ -14,7 +14,7 @@ spring:
     hibernate:
       ddl-auto: create-drop
   datasource:
-    url: jdbc:postgresql://localhost:5432/customerDB
+    url: jdbc:postgresql://postgres:5432/customerDB
     username: sewah
     password: password
     driverClassName: org.postgresql.Driver
@@ -24,7 +24,7 @@ spring:
   zipkin:
     base-url: ${ZIPKIN_BASE_URL:http://zipkin:9411}
   rabbitmq:
-    addresses: localhost:5672
+    addresses: rabbitmq:5672
 #  datasource:
 #    username: 'sewah'
 #    url: jdbc:postgresql://localhost:5432/customerDB
@@ -41,6 +41,6 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: ${DISCOVERY_SERVER_URL:http://eureka_server:8761/eureka}
+      defaultZone: ${DISCOVERY_SERVER_URL:http://eureka-server:8761/eureka}
     fetch-registry: true
     register-with-eureka: true

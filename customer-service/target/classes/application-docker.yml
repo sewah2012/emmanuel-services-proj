@@ -1,0 +1,47 @@
+server:
+  port: 8181
+  servlet:
+    context-path: /api/v1
+
+
+spring:
+  application:
+    name: customer-service
+
+#  jpa:
+#    database: POSTGRESQL
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create-drop
+#  datasource:
+#    url: jdbc:postgresql://postgres:5432/customerDB
+#    username: sewah
+#    password: password
+#    driverClassName: org.postgresql.Driver
+#    sql:
+#      init:
+#        platform: postgres
+  zipkin:
+    base-url: ${ZIPKIN_BASE_URL:http://zipkin:9411}
+  rabbitmq:
+    addresses: rabbitmq:5672
+  datasource:
+    username: 'sewah'
+    url: jdbc:postgresql://localhost:5432/customerDB?createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf-8&amp;amp;autoReconnect=true
+    password: 'password'
+    jpa:
+      generate-ddl: true
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          format_sql: 'true'
+      hibernate:
+        ddl-auto: create-drop
+      show-sql: 'true'
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${DISCOVERY_SERVER_URL:http://eureka-server:8761/eureka}
+    fetch-registry: true
+    register-with-eureka: true
