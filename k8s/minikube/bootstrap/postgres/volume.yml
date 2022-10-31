@@ -9,7 +9,7 @@ spec:
   storageClassName: manual
   capacity:
     storage: 5Gi
-  accessModes: :
+  accessModes:
     - ReadWriteMany
   hostPath:
     path: /mnt/data
@@ -24,8 +24,8 @@ metadata:
     app: postgres
 spec:
   storageClassName: manual
-  accessModes: :
+  accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storagge: 5Gi
+      storage: 5Gi
